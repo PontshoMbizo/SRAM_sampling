@@ -1,0 +1,59 @@
+# === Ignore Quartus build artifacts ===
+**/db/
+**/greybox_tmp/
+**/incremental_db/
+**/output_files/
+**/compiled_partitions/
+
+# === Ignore generated reports and files ===
+*.rpt
+*.summary
+*.smsg
+*.done
+*.pin
+*.htm
+*.map.*
+*.fit.*
+*.asm.*
+*.sta.*
+*.flow.*
+
+# === Ignore programming and debug files ===
+*.sof
+*.pof
+*.cdf
+*.jdi
+*.jditmp
+*.sld
+
+# === Ignore Quartus IP core output ===
+*_bb.v
+*.qip
+*.ppf
+
+# === Ignore backups and temp files ===
+*.bak
+*.tmp
+*~
+*.log
+
+# === Ignore simulation outputs (optional) ===
+*.vcd
+*.wlf
+transcript
+vsim.wlf
+work/
+modelsim.ini
+
+# === Keep Verilog/SystemVerilog source files, SDC, project config ===
+!*.v
+!*.sv
+!*.sdc
+!*.qsf
+!*.qpf
+
+# === Ensure firmware/src/ is tracked, but ignore generated subfolders ===
+!/firmware/src/
+firmware/src/db/
+firmware/src/greybox_tmp/
+firmware/src/incremental_db/
