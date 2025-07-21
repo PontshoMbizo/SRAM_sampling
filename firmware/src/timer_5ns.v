@@ -1,21 +1,13 @@
-//
+//4-bit counter block
 
 module timer_5ns(
 
-	input clk_200,
+	input clk,
 	input reset,
 	output reg [3:0] count
 );
 
-//=======================================================
-//  REG/WIRE declarations
-//=======================================================
-
-//=======================================================
-//  Structural coding
-//=======================================================
-
-always @(posedge clk_200) begin
+always @(posedge clk) begin
     if (reset)
         count <= 0;
     else if (count == 4'b1111)
