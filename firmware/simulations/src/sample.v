@@ -4,7 +4,7 @@ module sample(
 
     //////////// CLOCK //////////
     input               MAX10_CLK1_50,
-    //input               clk_200, // used for simulations only, comment out when flashing onto the device
+    input               clk_200, // used for simulations only, comment out when flashing onto the device
 
     //////////// SDRAM ////////// don't need it at the moment.
     //output      [12:0]  DRAM_ADDR,
@@ -27,9 +27,9 @@ module sample(
 
     /////////// output data ////// for simulation purposes at this point
     output reg  [7:0]   output_DATA,
-    output reg  [14:0]  output_ADDR
-    //output reg          read_signal,
-    //output reg  [3:0]   count_output
+    output reg  [14:0]  output_ADDR,
+    output reg          read_signal,
+    output reg  [3:0]   count_output
 );
 
     //=======================================================
@@ -37,17 +37,17 @@ module sample(
     //=======================================================
 
     //for simulations, instantiate this module with clk_200
-    //comment the pll instantiation below when simulating
+    //comment the pll instantiation above and uncomment the declaration below when simulating
     //do the opposite when flashing onto the device.
 
-    wire clk_200;
-    wire locked;
+    //wire clk_200;
+    //wire locked;
 
-    pll_200MHz pll_200MHz_inst (
-       .inclk0 (MAX10_CLK1_50),
-       .c0     (clk_200),
-       .locked (locked)
-    );
+    //pll_200MHz pll_200MHz_inst (
+    //    .inclk0 (MAX10_CLK1_50),
+    //    .c0     (clk_200),
+    //    .locked (locked)
+    //);
 
     //=======================================================
     // Timer (4-bit counter)
@@ -111,10 +111,10 @@ module sample(
     always @(posedge clk_200) begin
         toggle <= ~toggle; // toggle LEDR0 for debugging
 		LEDR0 <= toggle; //debug output
-        //count_output <= count; //simulation output
-        //read_signal <= read; //simulation output
-        output_DATA <= R_data;
-        output_ADDR <= R_address;
+        count_output <= count; //simulation output
+        read_signal <= read; //simulation output
+        output_DATA <= R_data; //simulation output
+        output_ADDR <= R_address; //simulation output
     end
 endmodule
 

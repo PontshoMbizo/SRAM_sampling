@@ -3,7 +3,6 @@
 module sample_tb;
 
     // DUT Inputs
-    reg ADC_CLK_10 = 0;
     reg MAX10_CLK1_50 = 0;
     reg clk_200 = 0;
     
