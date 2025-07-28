@@ -35,10 +35,6 @@ Intel does a better Job explaining this part 😅
 [here's the link](https://www.intel.com/content/www/us/en/developer/articles/training/program-fpga-device/terasic.html) 
 just keep in mind, the device is: **10M50DAF484C7G**, **MAX 10** family, **MAX10 DE** version
 
-## buffering circuits
-74LVC245
-SN74CB3T3245
-
 ## The Methods used:
 
 [PLL](https://www.intel.com/content/www/us/en/docs/programmable/683732/17-0/altpll-phase-locked-loop-ip-core-user-guide.html)
@@ -46,8 +42,3 @@ SN74CB3T3245
 [timer](https://www.geeksforgeeks.org/digital-logic/counter-design-using-verilog-hdl/)
 
 [buffering circuits](https://www.ti.com/lit/ds/symlink/sn74cb3t3245.pdf?ts=1752765931531&ref_url=https%253A%252F%252Fwww.google.com%252F)
-
-
-
-
-
