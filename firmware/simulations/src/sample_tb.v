@@ -117,6 +117,6 @@ module sample_tb;
 
         #100;
         $display("Simulation done.");
-        $stop;
+        $finish;
     end
 endmodule

@@ -12,9 +12,7 @@ initial count = 0; //for simulation purposes
 always @(posedge clk) begin
     if (reset)
         count <= 0;
-    else if (count == 4'b1111)
-        count <= 0;
-    else
+    else if (count != 4'b1111) // saturate at 15: one read pulse per access
         count <= count + 1;
 end
 endmodule

@@ -55,11 +55,27 @@ module sample(
 
     wire [3:0] count;
     reg toggle = 1'b0;
-    reg reset = 1'b0;
+    wire E, O;
+    assign E = GPIO[0]; //chip enable (active low)
+    assign O = GPIO[1]; //output enable (active low)
+
+    // E and O come from the 5 V side and are asynchronous to clk_200, so they
+    // pass through a two-flop synchroniser before they touch any logic.
+    reg [1:0] E_sync = 2'b11, O_sync = 2'b11;
+    always @(posedge clk_200) begin
+        E_sync <= {E_sync[0], E};
+        O_sync <= {O_sync[0], O};
+    end
+    wire E_s = E_sync[1];
+    wire O_s = O_sync[1];
+
+    // Re-arm the timer on every access: it is held at 0 until both E and O are
+    // low, so the 70 ns access time is counted from when the access starts.
+    wire timer_reset = E_s | O_s;
 
     timer_5ns timer_5ns_inst (
         .clk    (clk_200),
-        .reset  (reset),
+        .reset  (timer_reset),
         .count  (count)
     );
 
@@ -68,13 +84,10 @@ module sample(
     //=======================================================
 
 	wire read; // OUTPUT from read module
-    wire E, O;
-    assign E = GPIO[0]; //chip enable
-    assign O = GPIO[1]; //output enable
 
     read read_inst (
-        .E       (E),
-        .O       (O),
+        .E       (E_s),
+        .O       (O_s),
         .counter (count),
         .read    (read)
     );
@@ -97,13 +110,6 @@ module sample(
         .R_address  (R_address),
         .R_data     (R_data)
     );
-    //=======================================================
-    // simulation startup
-    //=======================================================
-        initial begin
-            reset = 1;
-            #1 reset = 0;
-        end
 
     //=======================================================
     // Main logic block

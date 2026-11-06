@@ -5,7 +5,7 @@ module read(
     output reg read          // Output signal to indicate read mode
 );    
     always @(*) begin
-        if (~E && ~O && counter >= 4'd14) begin // Check if chip is enabled and counter is at least 14
+        if (~E && ~O && counter >= 4'd12) begin // Check if chip is enabled and counter is at least 12
             read <= 1;
         end 
 		  else begin
